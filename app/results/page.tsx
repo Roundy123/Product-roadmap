@@ -159,7 +159,7 @@ export default function Results() {
         </div>
 
         {/* Vertical Timeline Roadmap */}
-        <div className="w-full mb-12">
+        {/* <div className="w-full mb-12">
           <VerticalTimeline lineColor="#babcba">
             {timelineSteps.map((step, idx) => {
               const stepColors = [
@@ -187,7 +187,7 @@ export default function Results() {
               );
             })}
           </VerticalTimeline>
-        </div>
+        </div> */}
 
         <div className="mt-8 text-center">
           <h3 
