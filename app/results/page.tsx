@@ -48,7 +48,7 @@ function extractTimelineSteps(html: string): TimelineStep[] {
     // If we stopped because we found a "Post Phase" section, create a new step for it
     if (nextElement?.textContent?.includes('Post Phase')) {
       const postPhaseStep: TimelineStep = {
-        title: nextElement.textContent || '',
+        title: nextElement.textContent?.replace('Post Phase 3', 'Post Phase 3:') || '',
         content: '',
         index: steps.length + 1
       };

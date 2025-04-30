@@ -3,12 +3,43 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-4xl font-bold mb-4">Generate Your Product Roadmap</h1>
-      <p className="mb-8 text-lg text-gray-300 max-w-xl text-center">
+      <h1
+        style={{
+          fontFamily: 'Playfair Display',
+          fontSize: '36px',
+          fontWeight: 600,
+          color: 'rgb(200, 195, 188)',
+          marginBottom: '1rem',
+        }}
+      >
+        Generate Your Product Roadmap
+      </h1>
+      <p
+        style={{
+          fontFamily: 'Inter',
+          fontSize: '18px',
+          fontWeight: 500,
+          color: 'rgb(200, 195, 188)',
+          marginBottom: '2rem',
+          textAlign: 'center',
+          maxWidth: 600,
+        }}
+      >
         Instantly create a detailed, visual product roadmap for your next big idea.
       </p>
       <Link href="/questions">
-        <button className="px-8 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+        <button
+          style={{
+            backgroundColor: 'rgb(186, 46, 46)',
+            color: 'white',
+            fontFamily: 'Inter',
+            fontSize: '16px',
+            fontWeight: 600,
+            padding: '10px 28px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
+          }}
+        >
           Start Now
         </button>
       </Link>
