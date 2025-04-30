@@ -1,0 +1,26 @@
+{
+  "name": "rapid-mvp-generator",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.7",
+    "@types/jspdf": "^2.0.0",
+    "jspdf": "^3.0.1",
+    "marked": "^15.0.11",
+    "next": "14.2.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.2",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  }
+}
