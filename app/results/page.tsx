@@ -4,6 +4,12 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { marked } from 'marked';
 
+interface TimelineStep {
+  title: string;
+  content: string;
+  index: number;
+}
+
 function emphasizeFirstHeading(html: string) {
   // Replace the first <h1> or <h2> with a larger, bolder style
   return html.replace(
@@ -12,10 +18,60 @@ function emphasizeFirstHeading(html: string) {
   );
 }
 
+function extractTimelineSteps(html: string): TimelineStep[] {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const steps: TimelineStep[] = [];
+  
+  // Extract h2 elements and their following content
+  const h2Elements = doc.querySelectorAll('h2');
+  h2Elements.forEach((h2, index) => {
+    const step: TimelineStep = {
+      title: h2.textContent || '',
+      content: '',
+      index: index + 1
+    };
+    
+    // Get content until next h2 or end
+    let nextElement = h2.nextElementSibling;
+    while (nextElement && nextElement.tagName !== 'H2') {
+      // Check if this is the start of a new phase (like "Post Phase 3")
+      if (nextElement.textContent?.includes('Post Phase')) {
+        break;
+      }
+      step.content += nextElement.outerHTML;
+      nextElement = nextElement.nextElementSibling;
+    }
+    
+    steps.push(step);
+
+    // If we stopped because we found a "Post Phase" section, create a new step for it
+    if (nextElement?.textContent?.includes('Post Phase')) {
+      const postPhaseStep: TimelineStep = {
+        title: nextElement.textContent || '',
+        content: '',
+        index: steps.length + 1
+      };
+      
+      // Get content for the post phase step
+      nextElement = nextElement.nextElementSibling;
+      while (nextElement && nextElement.tagName !== 'H2') {
+        postPhaseStep.content += nextElement.outerHTML;
+        nextElement = nextElement.nextElementSibling;
+      }
+      
+      steps.push(postPhaseStep);
+    }
+  });
+  
+  return steps;
+}
+
 export default function Results() {
   const [roadmapText, setRoadmapText] = useState('');
   const [roadmapImage, setRoadmapImage] = useState('');
   const [html, setHtml] = useState('');
+  const [timelineSteps, setTimelineSteps] = useState<TimelineStep[]>([]);
   const router = useRouter();
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -39,6 +95,7 @@ export default function Results() {
       // Style paragraphs
       parsed = parsed.replace(/<p>/g, '<p style="margin-bottom:1.25rem;line-height:1.6;">');
       setHtml(parsed);
+      setTimelineSteps(extractTimelineSteps(parsed));
     }
     parseMarkdown();
   }, [roadmapText]);
@@ -68,32 +125,86 @@ export default function Results() {
             </div>
           </div>
         )}
-        <div>
-          <h3 className="font-semibold mb-2 text-gray-900">Roadmap:</h3>
-          <div
-            ref={textRef}
-            className="prose max-w-none rounded-lg"
+
+        {/* Timeline Visualization */}
+        <div className="relative">
+          <h3 
+            className="text-2xl font-bold mb-6"
             style={{ 
-              background: 'rgb(22, 24, 25)', 
               color: 'rgb(200, 195, 188)',
-              fontSize: '16px',
-              lineHeight: '1.6',
-              boxShadow: 'none',
-              border: 'none',
-              padding: '1.5rem',
-              fontFamily: 'Inter'
+              fontFamily: 'Playfair Display'
             }}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          >
+            Your Product Roadmap
+          </h3>
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-700" style={{ top: '3rem' }} />
+          {timelineSteps.map((step, index) => (
+            <div key={index} className="relative pl-12 mb-8">
+              <div className="absolute left-0 w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center" style={{ top: '0.25rem' }}>
+                <span className="text-white font-bold">{step.index}</span>
+              </div>
+              <div className="bg-gray-800 rounded-lg p-4">
+                <h3 className="text-xl font-bold mb-2" style={{ color: 'rgb(200, 195, 188)', fontFamily: 'Inter' }}>
+                  {step.title}
+                </h3>
+                <div 
+                  className="prose prose-invert"
+                  style={{ color: 'rgb(200, 195, 188)', fontFamily: 'Inter', fontSize: '16px', lineHeight: '1.6' }}
+                  dangerouslySetInnerHTML={{ __html: step.content }}
+                />
+              </div>
+            </div>
+          ))}
         </div>
+
+        <div className="mt-8 text-center">
+          <h3 
+            className="text-2xl font-bold mb-4"
+            style={{ 
+              color: 'rgb(200, 195, 188)',
+              fontFamily: 'Playfair Display'
+            }}
+          >
+            Like what you see?
+          </h3>
+          <p 
+            className="mb-6"
+            style={{ 
+              color: 'rgb(200, 195, 188)',
+              fontFamily: 'Inter',
+              fontSize: '18px',
+              fontWeight: 500,
+              lineHeight: '1.6'
+            }}
+          >
+            Get expert guidance and support to bring your product vision to life. Our team is ready to help you refine your roadmap and accelerate your journey to market.
+          </p>
+          <a
+            href="https://hyperproduct.club"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-3 rounded-lg hover:opacity-90 text-white"
+            style={{ 
+              backgroundColor: 'rgb(186, 46, 46)',
+              fontFamily: 'Inter',
+              fontSize: '16px',
+              fontWeight: 600,
+              borderRadius: '8px'
+            }}
+          >
+            Get Started with Hyper Product Club
+          </a>
+        </div>
+
         <button
           onClick={handleRestart}
-          className="mt-4 px-6 py-2 rounded hover:opacity-90 text-white"
+          className="mt-4 px-6 py-2 hover:opacity-90 text-white"
           style={{ 
-            backgroundColor: 'rgb(186, 46, 46)',
+            backgroundColor: 'rgb(60, 60, 60)',
             fontFamily: 'Inter',
             fontSize: '16px',
-            fontWeight: 600
+            fontWeight: 500,
+            borderRadius: '8px'
           }}
         >
           Start Again
