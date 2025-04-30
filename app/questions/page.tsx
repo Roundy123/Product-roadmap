@@ -54,17 +54,53 @@ export default function Questions() {
         >
           Product Roadmap Wizard
         </h2>
-        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
+        <label className="block" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500, color: 'rgb(186, 184, 182)' }}>
           What's your product idea?
-          <input name="idea" value={form.idea} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }} />
+          <input 
+            name="idea" 
+            value={form.idea} 
+            onChange={handleChange} 
+            required 
+            className="w-full mt-1 p-2 rounded border bg-black" 
+            style={{ 
+              fontFamily: 'Inter', 
+              fontSize: '18px', 
+              fontWeight: 500, 
+              color: 'rgb(186, 184, 182)' 
+            }} 
+          />
         </label>
-        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
+        <label className="block" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500, color: 'rgb(186, 184, 182)' }}>
           Who is your target customer?
-          <input name="target_customer" value={form.target_customer} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }} />
+          <input 
+            name="target_customer" 
+            value={form.target_customer} 
+            onChange={handleChange} 
+            required 
+            className="w-full mt-1 p-2 rounded border bg-black" 
+            style={{ 
+              fontFamily: 'Inter', 
+              fontSize: '18px', 
+              fontWeight: 500, 
+              color: 'rgb(186, 184, 182)' 
+            }} 
+          />
         </label>
-        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
+        <label className="block" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500, color: 'rgb(186, 184, 182)' }}>
           What is your launch timeline?
-          <select name="timeline" value={form.timeline} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
+          <select 
+            name="timeline" 
+            value={form.timeline} 
+            onChange={handleChange} 
+            required 
+            className="w-full mt-1 p-2 rounded border bg-black" 
+            style={{ 
+              fontFamily: 'Inter', 
+              fontSize: '18px', 
+              fontWeight: 500, 
+              color: 'rgb(186, 184, 182)' 
+            }}
+          >
             <option value="">Select...</option>
             <option value="1 month">1 month</option>
             <option value="3 months">3 months</option>
@@ -72,9 +108,21 @@ export default function Questions() {
             <option value="12 months">12 months</option>
           </select>
         </label>
-        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
+        <label className="block" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500, color: 'rgb(186, 184, 182)' }}>
           What type of product is it?
-          <select name="product_type" value={form.product_type} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
+          <select 
+            name="product_type" 
+            value={form.product_type} 
+            onChange={handleChange} 
+            required 
+            className="w-full mt-1 p-2 rounded border bg-black" 
+            style={{ 
+              fontFamily: 'Inter', 
+              fontSize: '18px', 
+              fontWeight: 500, 
+              color: 'rgb(186, 184, 182)' 
+            }}
+          >
             <option value="">Select...</option>
             <option value="SaaS">SaaS</option>
             <option value="Mobile App">Mobile App</option>
