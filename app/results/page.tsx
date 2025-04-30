@@ -8,7 +8,7 @@ function emphasizeFirstHeading(html: string) {
   // Replace the first <h1> or <h2> with a larger, bolder style
   return html.replace(
     /<(h1|h2)>(.*?)<\/\1>/i,
-    '<h1 style="font-size:2.25rem;font-weight:900;margin-bottom:1.5rem;">$2</h1>'
+    '<h1 style="font-size:2.25rem;font-weight:900;margin-bottom:1.5rem;color:rgb(200, 195, 188);font-family:\'Playfair Display\';">$2</h1>'
   );
 }
 
@@ -29,7 +29,15 @@ export default function Results() {
       let raw = roadmapText || '';
       let parsed = await marked.parse(raw) as string;
       parsed = emphasizeFirstHeading(parsed);
-      parsed = parsed.replace(/<li>/g, '<li style=\"margin-bottom:1em;\">');
+      // Style all headings
+      parsed = parsed.replace(/<h2>/g, '<h2 style="font-size:1.5rem;font-weight:700;margin-top:2rem;margin-bottom:1rem;color:rgb(200, 195, 188);font-family:\'Inter\';">');
+      parsed = parsed.replace(/<h3>/g, '<h3 style="font-size:1.25rem;font-weight:600;margin-top:1.5rem;margin-bottom:0.75rem;color:rgb(200, 195, 188);font-family:\'Inter\';">');
+      // Style lists
+      parsed = parsed.replace(/<ul>/g, '<ul style="margin-left:1.5rem;margin-bottom:1.5rem;">');
+      parsed = parsed.replace(/<ol>/g, '<ol style="margin-left:1.5rem;margin-bottom:1.5rem;">');
+      parsed = parsed.replace(/<li>/g, '<li style="margin-bottom:0.75rem;line-height:1.6;">');
+      // Style paragraphs
+      parsed = parsed.replace(/<p>/g, '<p style="margin-bottom:1.25rem;line-height:1.6;">');
       setHtml(parsed);
     }
     parseMarkdown();
@@ -65,7 +73,16 @@ export default function Results() {
           <div
             ref={textRef}
             className="prose max-w-none rounded-lg"
-            style={{ background: 'rgb(22, 24, 25)', color: 'rgb(156, 152, 146)', fontSize: '16px', boxShadow: 'none', border: 'none', padding: '1.25rem' }}
+            style={{ 
+              background: 'rgb(22, 24, 25)', 
+              color: 'rgb(200, 195, 188)',
+              fontSize: '16px',
+              lineHeight: '1.6',
+              boxShadow: 'none',
+              border: 'none',
+              padding: '1.5rem',
+              fontFamily: 'Inter'
+            }}
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </div>
