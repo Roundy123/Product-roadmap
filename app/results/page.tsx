@@ -72,7 +72,12 @@ export default function Results() {
         <button
           onClick={handleRestart}
           className="mt-4 px-6 py-2 rounded hover:opacity-90 text-white"
-          style={{ backgroundColor: 'rgb(186, 46, 46)' }}
+          style={{ 
+            backgroundColor: 'rgb(186, 46, 46)',
+            fontFamily: 'Inter',
+            fontSize: '16px',
+            fontWeight: 600
+          }}
         >
           Start Again
         </button>

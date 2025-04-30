@@ -42,18 +42,29 @@ export default function Questions() {
         className="w-full max-w-lg p-8 rounded-lg shadow space-y-4"
         style={{ background: 'rgba(20,20,20,0.95)' }}
       >
-        <h2 className="text-2xl font-bold mb-4 text-white">Product Roadmap Wizard</h2>
-        <label className="block text-white">
+        <h2 
+          style={{
+            color: 'rgb(186, 184, 182)',
+            colorScheme: 'dark',
+            display: 'block',
+            fontFamily: 'Playfair Display',
+            fontSize: '36px',
+            fontWeight: 600
+          }}
+        >
+          Product Roadmap Wizard
+        </h2>
+        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
           What's your product idea?
-          <input name="idea" value={form.idea} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" />
+          <input name="idea" value={form.idea} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }} />
         </label>
-        <label className="block text-white">
+        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
           Who is your target customer?
-          <input name="target_customer" value={form.target_customer} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" />
+          <input name="target_customer" value={form.target_customer} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }} />
         </label>
-        <label className="block text-white">
+        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
           What is your launch timeline?
-          <select name="timeline" value={form.timeline} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white">
+          <select name="timeline" value={form.timeline} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
             <option value="">Select...</option>
             <option value="1 month">1 month</option>
             <option value="3 months">3 months</option>
@@ -61,9 +72,9 @@ export default function Questions() {
             <option value="12 months">12 months</option>
           </select>
         </label>
-        <label className="block text-white">
+        <label className="block text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
           What type of product is it?
-          <select name="product_type" value={form.product_type} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white">
+          <select name="product_type" value={form.product_type} onChange={handleChange} required className="w-full mt-1 p-2 rounded border bg-black text-white" style={{ fontFamily: 'Inter', fontSize: '18px', fontWeight: 500 }}>
             <option value="">Select...</option>
             <option value="SaaS">SaaS</option>
             <option value="Mobile App">Mobile App</option>
@@ -71,21 +82,28 @@ export default function Questions() {
             <option value="Other">Other</option>
           </select>
         </label>
-        <button
-          type="submit"
-          className="w-full py-3 rounded-lg hover:opacity-90 text-white"
-          style={{ backgroundColor: 'rgb(186, 46, 46)' }}
-          disabled={loading}
-        >
-          {loading ? (
-            <span className="flex items-center justify-center">
-              Generating...
-              <span className="ml-2 animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white border-solid" />
-            </span>
-          ) : (
-            'Generate Roadmap'
-          )}
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            className="px-8 py-3 rounded-lg hover:opacity-90 text-white"
+            style={{ 
+              backgroundColor: 'rgb(186, 46, 46)',
+              fontFamily: 'Inter',
+              fontSize: '16px',
+              fontWeight: 600
+            }}
+            disabled={loading}
+          >
+            {loading ? (
+              <span className="flex items-center justify-center" style={{ fontFamily: 'Inter', fontSize: '16px', fontWeight: 600 }}>
+                Generating...
+                <span className="ml-2 animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white border-solid" />
+              </span>
+            ) : (
+              'Generate Roadmap'
+            )}
+          </button>
+        </div>
       </form>
     </main>
   );
