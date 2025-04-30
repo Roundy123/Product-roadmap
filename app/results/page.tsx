@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { marked } from 'marked';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 
 interface TimelineStep {
   title: string;
@@ -110,11 +111,20 @@ export default function Results() {
       className="flex flex-col items-center justify-center min-h-screen p-4"
       style={{ backgroundColor: 'var(--darkreader-background-0c1116, #080b0e)' }}
     >
-      <h2 className="text-2xl font-bold mb-4 text-white">Your Product Roadmap</h2>
+      <h2
+        style={{
+          fontFamily: 'Playfair Display',
+          fontSize: '36px',
+          fontWeight: 600,
+          color: 'rgb(200, 195, 188)',
+          marginBottom: '1rem',
+        }}
+      >
+        Your Product Roadmap
+      </h2>
       <div className="w-full max-w-2xl space-y-6">
         {roadmapImage && (
           <div className="flex flex-col items-center mb-6">
-            <h3 className="font-semibold mb-2 text-center text-gray-900">Visual Roadmap:</h3>
             <div className="relative w-full">
               <img
                 src={roadmapImage}
@@ -128,15 +138,6 @@ export default function Results() {
 
         {/* Timeline Visualization */}
         <div className="relative">
-          <h3 
-            className="text-2xl font-bold mb-6"
-            style={{ 
-              color: 'rgb(200, 195, 188)',
-              fontFamily: 'Playfair Display'
-            }}
-          >
-            Your Product Roadmap
-          </h3>
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-700" style={{ top: '3rem' }} />
           {timelineSteps.map((step, index) => (
             <div key={index} className="relative pl-12 mb-8">
@@ -155,6 +156,37 @@ export default function Results() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Vertical Timeline Roadmap */}
+        <div className="w-full mb-12">
+          <VerticalTimeline lineColor="#babcba">
+            {timelineSteps.map((step, idx) => {
+              const stepColors = [
+                '#999999', // gray
+                '#0057b8', // blue
+                '#3cb4e7', // light blue
+                '#6bbf43', // green
+                '#e94e3a', // red
+                '#a259e9', // purple (for extra steps)
+              ];
+              const color = stepColors[idx % stepColors.length];
+              return (
+                <VerticalTimelineElement
+                  key={idx}
+                  contentStyle={{ background: '#181a1b', color: 'rgb(200, 195, 188)', boxShadow: '0 4px 24px rgba(0,0,0,0.10)', fontFamily: 'Inter', borderRadius: 12 }}
+                  contentArrowStyle={{ borderRight: `7px solid ${color}` }}
+                  iconStyle={{ background: color, color: '#fff', fontWeight: 700, fontSize: 24, fontFamily: 'Inter', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  icon={<span style={{ fontWeight: 700, fontSize: 24, fontFamily: 'Inter' }}>{step.index}</span>}
+                >
+                  <h4 className="font-bold mb-2" style={{ fontFamily: 'Inter', fontSize: 22, color }}>{step.title}</h4>
+                  <div style={{ fontFamily: 'Inter', fontSize: 16, fontWeight: 500 }}>
+                    <span dangerouslySetInnerHTML={{ __html: step.content }} />
+                  </div>
+                </VerticalTimelineElement>
+              );
+            })}
+          </VerticalTimeline>
         </div>
 
         <div className="mt-8 text-center">

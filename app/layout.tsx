@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Product Roadmap Generator',
@@ -18,11 +19,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="min-h-screen bg-gray-900 text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
         <div style={{ position: 'fixed', top: 24, left: 24, zIndex: 50 }}>
-          <img
-            src="https://assets.softr-files.com/applications/9694e5fb-84a9-4037-abbb-9a8c48cf5117/assets/cd74997e-77d5-470d-98b2-2026095dea68.png"
-            alt="Logo"
-            style={{ height: 40, width: 'auto', objectFit: 'contain' }}
-          />
+          <Link href="/">
+            <img
+              src="https://assets.softr-files.com/applications/9694e5fb-84a9-4037-abbb-9a8c48cf5117/assets/cd74997e-77d5-470d-98b2-2026095dea68.png"
+              alt="Logo"
+              style={{ height: 40, width: 'auto', objectFit: 'contain', cursor: 'pointer' }}
+            />
+          </Link>
         </div>
         {children}
       </body>
