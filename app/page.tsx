@@ -1,8 +1,13 @@
 import Link from 'next/link';
+import RotatingCube from './components/Cube';
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen">
+      <div style={{ transform: 'scale(0.3)', width: '50px', height: '50px', marginBottom: '3rem' }}>
+  <RotatingCube />
+</div>
+
       <h1
         style={{
           fontFamily: 'Playfair Display',
