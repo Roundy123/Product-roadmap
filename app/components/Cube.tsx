@@ -5,9 +5,7 @@ export default function RotatingCube() {
   return (
     <>
       {/* Import Anton font globally */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-      `}</style>
+      <style jsx global>{`@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');`}</style>
 
       <div className="scene">
         <div className="cube">
@@ -37,6 +35,8 @@ export default function RotatingCube() {
           height: 100%;
           position: relative;
           transform-style: preserve-3d;
+          /* apply 3D rotation with skew to create parallelepiped */
+          transform: rotateX(20deg) rotateY(25deg) skewY(-15deg) scaleX(1.3);
           animation: rotateCube 10s infinite linear;
         }
         .face {
@@ -61,20 +61,29 @@ export default function RotatingCube() {
         .logo-text {
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: flex-start;  /* left-align text */
           justify-content: center;
-          transform: skewX(-10deg);
+          /* no additional skew—text will follow face slant */
           letter-spacing: -0.05em;
           font-family: 'Anton', sans-serif;
-          font-size: 2.5rem;
+          font-size: 2.2rem;
           line-height: 1;
-        //   padding: 50px;
+          padding: 2rem;
+          padding-left: 2.5rem;
           box-sizing: border-box;
         }
 
         @keyframes rotateCube {
-          from { transform: scaleX(1.3) skewY(-9deg) rotateX(0deg) rotateY(0deg); }
-          to   { transform: scaleX(1.3) skewY(-9deg) rotateX(360deg) rotateY(360deg); }
+          from {
+            transform: rotateX(20deg) rotateY(25deg) skewY(-15deg) scaleX(1.3);
+          }
+          to {
+            transform: rotateX(380deg) rotateY(385deg) skewY(-15deg) scaleX(1.3);
+          }
+        }
+          to {
+            transform: rotateX(20deg) rotateY(385deg) skewY(-15deg) scaleX(1.3);
+          }
         }
       `}</style>
     </>
