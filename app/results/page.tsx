@@ -3,7 +3,11 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { marked } from 'marked';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import Timeline from '../components/Timeline';
+import WorkIcon from '@mui/icons-material/Work';
+import SchoolIcon from '@mui/icons-material/School';
+import StarIcon from '@mui/icons-material/Star';
+import VerticalTimelineComponent from '../components/VerticalTimeline';
 
 interface TimelineStep {
   title: string;
@@ -136,7 +140,7 @@ export default function Results() {
           </div>
         )}
 
-        {/* Timeline Visualization */}
+        {/* Original Timeline Visualization */}
         <div className="relative">
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-700" style={{ top: '3rem' }} />
           {timelineSteps.map((step, index) => (
@@ -159,35 +163,7 @@ export default function Results() {
         </div>
 
         {/* Vertical Timeline Roadmap */}
-        {/* <div className="w-full mb-12">
-          <VerticalTimeline lineColor="#babcba">
-            {timelineSteps.map((step, idx) => {
-              const stepColors = [
-                '#999999', // gray
-                '#0057b8', // blue
-                '#3cb4e7', // light blue
-                '#6bbf43', // green
-                '#e94e3a', // red
-                '#a259e9', // purple (for extra steps)
-              ];
-              const color = stepColors[idx % stepColors.length];
-              return (
-                <VerticalTimelineElement
-                  key={idx}
-                  contentStyle={{ background: '#181a1b', color: 'rgb(200, 195, 188)', boxShadow: '0 4px 24px rgba(0,0,0,0.10)', fontFamily: 'Inter', borderRadius: 12 }}
-                  contentArrowStyle={{ borderRight: `7px solid ${color}` }}
-                  iconStyle={{ background: color, color: '#fff', fontWeight: 700, fontSize: 24, fontFamily: 'Inter', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                  icon={<span style={{ fontWeight: 700, fontSize: 24, fontFamily: 'Inter' }}>{step.index}</span>}
-                >
-                  <h4 className="font-bold mb-2" style={{ fontFamily: 'Inter', fontSize: 22, color }}>{step.title}</h4>
-                  <div style={{ fontFamily: 'Inter', fontSize: 16, fontWeight: 500 }}>
-                    <span dangerouslySetInnerHTML={{ __html: step.content }} />
-                  </div>
-                </VerticalTimelineElement>
-              );
-            })}
-          </VerticalTimeline>
-        </div> */}
+        {/* <VerticalTimelineComponent steps={timelineSteps} /> */}
 
         <div className="mt-8 text-center">
           <h3 

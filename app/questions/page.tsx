@@ -40,7 +40,7 @@ export default function Questions() {
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-lg p-8 rounded-lg shadow space-y-4"
-        style={{ background: 'rgba(20,20,20,0.95)' }}
+        style={{ background: 'rgba(12, 13, 14, 0.95)' }}
       >
         <h2 
           style={{
@@ -61,12 +61,13 @@ export default function Questions() {
             value={form.idea} 
             onChange={handleChange} 
             required 
-            className="w-full mt-1 p-2 rounded border bg-black" 
+            className="w-full mt-1 p-2 rounded text-white" 
             style={{ 
               fontFamily: 'Inter', 
               fontSize: '18px', 
-              fontWeight: 500, 
-              color: 'rgb(186, 184, 182)' 
+              fontWeight: 500,
+              backgroundColor: 'black',
+              border: '1px solid rgb(43, 47, 49)'
             }} 
           />
         </label>
@@ -77,12 +78,13 @@ export default function Questions() {
             value={form.target_customer} 
             onChange={handleChange} 
             required 
-            className="w-full mt-1 p-2 rounded border bg-black" 
+            className="w-full mt-1 p-2 rounded text-white" 
             style={{ 
               fontFamily: 'Inter', 
               fontSize: '18px', 
-              fontWeight: 500, 
-              color: 'rgb(186, 184, 182)' 
+              fontWeight: 500,
+              backgroundColor: 'black',
+              border: '1px solid rgb(43, 47, 49)'
             }} 
           />
         </label>
@@ -93,12 +95,13 @@ export default function Questions() {
             value={form.timeline} 
             onChange={handleChange} 
             required 
-            className="w-full mt-1 p-2 rounded border bg-black" 
+            className="w-full mt-1 p-2 rounded text-white" 
             style={{ 
               fontFamily: 'Inter', 
               fontSize: '18px', 
-              fontWeight: 500, 
-              color: 'rgb(186, 184, 182)' 
+              fontWeight: 500,
+              backgroundColor: 'black',
+              border: '1px solid rgb(43, 47, 49)'
             }}
           >
             <option value="">Select...</option>
@@ -115,12 +118,13 @@ export default function Questions() {
             value={form.product_type} 
             onChange={handleChange} 
             required 
-            className="w-full mt-1 p-2 rounded border bg-black" 
+            className="w-full mt-1 p-2 rounded text-white" 
             style={{ 
               fontFamily: 'Inter', 
               fontSize: '18px', 
-              fontWeight: 500, 
-              color: 'rgb(186, 184, 182)' 
+              fontWeight: 500,
+              backgroundColor: 'black',
+              border: '1px solid rgb(43, 47, 49)'
             }}
           >
             <option value="">Select...</option>
