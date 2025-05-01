@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ backgroundColor: 'bg-gray-900' }}>
       <head>
         <link rel="icon" href="https://assets.softr-files.com/applications/9694e5fb-84a9-4037-abbb-9a8c48cf5117/assets/49cea95b-59e0-4daf-9d59-1ae5d7132eaf.png?rnd=1663364510102" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
