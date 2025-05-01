@@ -3,8 +3,10 @@ import RotatingCube from './components/Cube';
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen">
-      <div style={{ transform: 'scale(0.3)', width: '50px', height: '50px', marginBottom: '3rem' }}>
+    <main className="flex flex-col items-center min-h-screen mt-20">
+      <div style={{ transform: 'scale(0.3)', width: '50px', height: '50px',
+        marginBottom: '3rem',
+        marginLeft: '-2rem' }}>
   <RotatingCube />
 </div>
 
@@ -13,6 +15,8 @@ export default function Home() {
           fontFamily: 'Playfair Display',
           fontSize: '36px',
           fontWeight: 600,
+          textAlign: 'center',
+          padding: '0 1rem',
           color: 'rgb(200, 195, 188)',
           marginBottom: '1rem',
         }}
